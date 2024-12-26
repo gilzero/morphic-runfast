@@ -13,7 +13,7 @@ const Footer: React.FC = () => {
               size={'icon'}
               className="text-muted-foreground/50"
           >
-            <Link href="https://dreamer.xyz" target="_blank">
+            <Link href="https://www.dreamer.xyz" target="_blank">
               <PiBirdFill size={18} />
             </Link>
           </Button>
