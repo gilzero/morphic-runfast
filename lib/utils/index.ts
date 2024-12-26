@@ -1,3 +1,4 @@
+// filepath: lib/utils/index.ts
 import { type ClassValue, clsx } from 'clsx'
 import { twMerge } from 'tailwind-merge'
 import { CoreMessage } from 'ai'
@@ -41,8 +42,11 @@ export function createModelId(model: Model): string {
 }
 
 export function getDefaultModelId(models: Model[]): string {
-  if (!models.length) {
-    throw new Error('No models available')
-  }
-  return createModelId(models[0])
+    if (!models.length) {
+        throw new Error('No models available')
+    }
+    // Find Gemini 2.0 Flash model as the default
+    const geminiDefault = models.find(model => model.name === 'Gemini 2.0 Flash')
+    return geminiDefault ? createModelId(geminiDefault) : createModelId(models[0])
 }
+

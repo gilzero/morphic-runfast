@@ -79,7 +79,7 @@ function LoadingSpinner({ className, ...props }: React.ComponentProps<'svg'>) {
           viewBox="0 0 24 24"
           role="img"
           xmlns="http://www.w3.org/2000/svg"
-          className={cn('h-4 w-4 animate-spin', className)}
+          className={cn('h-4 w-4 animate-spin spinning', className)} // Add the `spinning` class here
           {...props}
       >
         <circle

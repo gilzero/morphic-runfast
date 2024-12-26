@@ -22,9 +22,9 @@ interface CollapsibleMessageProps {
 }
 
 export const CollapsibleMessage: React.FC<CollapsibleMessageProps> = ({
-  message,
-  isLastMessage = false
-}) => {
+                                                                        message,
+                                                                        isLastMessage = false
+                                                                      }) => {
   const [data] = useStreamableValue(message.isCollapsed)
   const isCollapsed = data ?? false
   const [open, setOpen] = useState(isLastMessage)
@@ -39,37 +39,39 @@ export const CollapsibleMessage: React.FC<CollapsibleMessageProps> = ({
   }
 
   return (
-    <Collapsible
-      open={open}
-      onOpenChange={value => {
-        setOpen(value)
-      }}
-    >
-      <CollapsibleTrigger asChild>
-        <div
-          className={cn(
-            'w-full flex justify-end',
-            !isCollapsed ? 'hidden' : ''
-          )}
-        >
-          <Button
-            variant="ghost"
-            size={'icon'}
-            className={cn('-mt-3 rounded-full')}
-          >
-            <ChevronDown
-              size={14}
+      <Collapsible
+          open={open}
+          onOpenChange={value => {
+            setOpen(value)
+          }}
+      >
+        <CollapsibleTrigger asChild>
+          <div
               className={cn(
-                open ? 'rotate-180' : 'rotate-0',
-                'h-4 w-4 transition-all'
+                  'w-full flex justify-end',
+                  !isCollapsed ? 'hidden' : ''
               )}
-            />
-            <span className="sr-only">collapse</span>
-          </Button>
-        </div>
-      </CollapsibleTrigger>
-      <CollapsibleContent>{message.component}</CollapsibleContent>
-      {!open && <Separator className="my-2 bg-muted" />}
-    </Collapsible>
+          >
+            <Button
+                variant="ghost"
+                size={'icon'}
+                className={cn('-mt-3 rounded-full')}
+            >
+              <ChevronDown
+                  size={14}
+                  className={cn(
+                      open ? 'rotate-180' : 'rotate-0',
+                      'h-4 w-4 transition-all'
+                  )}
+              />
+              <span className="sr-only">collapse</span>
+            </Button>
+          </div>
+        </CollapsibleTrigger>
+        <CollapsibleContent>
+          <div className="animate-in-message">{message.component}</div>
+        </CollapsibleContent>
+        {!open && <Separator className="my-2 bg-muted" />}
+      </Collapsible>
   )
 }

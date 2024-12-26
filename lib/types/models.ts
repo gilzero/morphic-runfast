@@ -6,17 +6,11 @@ export interface Model {
 }
 
 export const models: Model[] = [
-  // {
-  //   id: 'gpt-4o',
-  //   name: 'GPT-4o',
-  //   provider: 'OpenAI',
-  //   providerId: 'openai'
-  // },
   {
-    id: 'gpt-4o-mini',
-    name: 'GPT-4o mini',
-    provider: 'OpenAI',
-    providerId: 'openai'
+    id: 'gemini-2.0-flash-exp',
+    name: 'Gemini 2.0 Flash',
+    provider: 'Google Generative AI',
+    providerId: 'google'
   },
   // {
   //   id: 'claude-3-5-sonnet-latest',
@@ -31,34 +25,30 @@ export const models: Model[] = [
     providerId: 'anthropic'
   },
   // {
+  //   id: 'gpt-4o',
+  //   name: 'GPT-4o',
+  //   provider: 'OpenAI',
+  //   providerId: 'openai'
+  // },
+  {
+    id: 'gpt-4o-mini',
+    name: 'GPT-4o mini',
+    provider: 'OpenAI',
+    providerId: 'openai'
+  },
+
+  // {
   //   id: 'gemini-1.5-pro-002',
   //   name: 'Gemini 1.5 Pro',
   //   provider: 'Google Generative AI',
   //   providerId: 'google'
   // },
-  {
-    id: 'gemini-2.0-flash-exp',
-    name: 'Gemini 2.0 Flash',
-    provider: 'Google Generative AI',
-    providerId: 'google'
-  },
+
   // {
   //   id: 'llama-3.3-70b-versatile',
   //   name: 'LLama 3.3 70b Versatile',
   //   provider: 'Groq',
   //   providerId: 'groq'
-  // },
-  // {
-  //   id: 'mixtral-8x7b-32768',
-  //   name: 'Mixtral 8x7b',
-  //   provider: 'Groq',
-  //   providerId: 'groq'
-  // },
-  // {
-  //   id: 'qwen2.5',
-  //   name: 'Qwen 2.5',
-  //   provider: 'Ollama',
-  //   providerId: 'ollama'
   // },
   // {
   //   id: process.env.NEXT_PUBLIC_AZURE_DEPLOYMENT_NAME || 'undefined',

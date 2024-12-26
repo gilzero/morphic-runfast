@@ -31,8 +31,7 @@
 
     /* Accent - Electric Blue */
     --accent: 217 91% 60%;
-    --accent-foreground: 222 47% 11%; /* Adjusted for better visibility in light mode */
-
+    --accent-foreground: 222 47% 11%;
 
     /* Speed Indicators */
     --speed-fast: 224 64% 78%;
@@ -86,7 +85,6 @@
     --accent: 217 91% 60%;
     --accent-foreground: 210 40% 98%;
 
-
     /* Speed Indicators (dark) */
     --speed-fast: 224 64% 33%;
     --speed-medium: 142 76% 36%;
@@ -133,8 +131,12 @@
     @apply hover:scale-[1.02] active:scale-[0.98] transition-transform duration-200;
   }
 
+  .speed-button-hover {
+    @apply hover:bg-primary/10 active:bg-primary/20 transition-colors;
+  }
+
   .speed-focus {
-    @apply focus:outline-none focus:ring-2 focus:ring-primary/50 focus:ring-offset-2 focus:ring-offset-background;
+    @apply focus:outline-none focus:ring-2 focus:ring-primary/50 focus:ring-offset-2 focus:ring-offset-background focus:border-primary;
   }
 
   .speed-glass {
@@ -165,5 +167,28 @@
 
   .speed-badge-slow {
     @apply bg-speed-slow/10 text-speed-slow border border-speed-slow/20;
+  }
+}
+
+@keyframes customSpin {
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+  50% {
+    transform: rotate(180deg) scale(1.1);
+  }
+  100% {
+    transform: rotate(360deg) scale(1);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(10px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
   }
 }

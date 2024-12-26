@@ -1,3 +1,4 @@
+// filepath: components/model-selector.tsx
 'use client'
 
 import {
@@ -14,7 +15,7 @@ import { Model, models } from '@/lib/types/models'
 import { createModelId } from '@/lib/utils'
 
 interface ModelSelectorProps {
-  selectedModelId: string
+  selectedModelId: string | undefined
   onModelChange: (id: string) => void
 }
 
@@ -33,18 +34,23 @@ export function ModelSelector({
                                 selectedModelId,
                                 onModelChange
                               }: ModelSelectorProps) {
+  const geminiDefaultId = models.find(model => model.name === 'Gemini 2.0 Flash')?.id
+
+  // Use the provided selectedModelId or fallback to the Gemini model ID
+  const currentModelId = selectedModelId || geminiDefaultId
+
   const handleModelChange = (id: string) => {
     onModelChange(id)
   }
 
   const groupedModels = groupModelsByProvider(models)
-  const selectedModel = models.find(model => createModelId(model) === selectedModelId)
+  const selectedModel = models.find(model => createModelId(model) === currentModelId)
 
   return (
       <div className="absolute -top-8 left-2">
         <Select
             name="model"
-            value={selectedModelId}
+            value={currentModelId}
             onValueChange={handleModelChange}
         >
           <SelectTrigger

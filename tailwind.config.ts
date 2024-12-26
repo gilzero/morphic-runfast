@@ -110,6 +110,16 @@ const config = {
         "speed-pulse": {
           '0%, 100%': { transform: 'scale(1)' },
           '50%': { transform: 'scale(1.05)' },
+        },
+        "racing-pulse": {
+          "0%, 100%": { opacity: "0.5" },
+          "50%": { opacity: "0.8" }
+        },
+        "racing-lines": {
+          "0%": { transform: "translateX(-100%)" },
+          "50%": { transform: "translateX(100%)" },
+          "50.01%": { transform: "translateX(-100%)" },
+          "100%": { transform: "translateX(-100%)" }
         }
       },
       animation: {
@@ -117,6 +127,8 @@ const config = {
         "accordion-up": "accordion-up 0.2s ease-out",
         "speed-in": "speed-in 0.2s ease-out",
         "speed-pulse": "speed-pulse 1s ease-in-out infinite",
+        "racing-pulse": "racing-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite",
+        "racing-lines": "racing-lines 2s linear infinite"
       },
       fontFamily: {
         sans: ["var(--font-sans)", ...fontFamily.sans],
