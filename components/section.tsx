@@ -1,3 +1,4 @@
+// filepath: /components/section.tsx
 'use client'
 
 import { cn } from '@/lib/utils'
@@ -34,21 +35,27 @@ export const Section: React.FC<SectionProps> = ({
   switch (title) {
     case 'Images':
       // eslint-disable-next-line jsx-a11y/alt-text
+      title = "🖼️"
       icon = <Image size={iconSize} className={iconClassName} />
       break
     case 'Videos':
+      title = "🎥"
       icon = <Film size={iconSize} className={iconClassName} />
       break
     case 'Sources':
+      title = "📎"
       icon = <Newspaper size={iconSize} className={iconClassName} />
       break
     case 'Answer':
+      title = "⚡️ Answer"
       icon = <BookCheck size={iconSize} className={iconClassName} />
       break
     case 'Related':
+      title = "💡 You may wonder:"
       icon = <Repeat2 size={iconSize} className={iconClassName} />
       break
     case 'Follow-up':
+      title = "🤔 Follow-up question?"
       icon = <MessageCircleMore size={iconSize} className={iconClassName} />
       break
     default:

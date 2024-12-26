@@ -1,3 +1,4 @@
+// filepath: /components/search-section.tsx
 'use client'
 
 import { SearchResults } from './search-results'
@@ -23,9 +24,9 @@ export function SearchSection({ result, includeDomains }: SearchSectionProps) {
     <div>
       {!pending && data ? (
         <>
-          <Section size="sm" className="pt-2 pb-0">
-            <ToolBadge tool="search">{`${searchResults.query}${includeDomainsString}`}</ToolBadge>
-          </Section>
+          {/*<Section size="sm" className="pt-2 pb-0">*/}
+          {/*  <ToolBadge tool="search">{`${searchResults.query}${includeDomainsString}`}</ToolBadge>*/}
+          {/*</Section>*/}
           {searchResults.images && searchResults.images.length > 0 && (
             <Section title="Images">
               <SearchResultsImageSection

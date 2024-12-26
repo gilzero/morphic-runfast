@@ -1,3 +1,4 @@
+// filepath: /components/answer-section.tsx
 'use client'
 
 import { Section } from './section'
@@ -12,9 +13,9 @@ export type AnswerSectionProps = {
 }
 
 export function AnswerSection({
-  result,
-  hasHeader = true
-}: AnswerSectionProps) {
+                                result,
+                                hasHeader = true
+                              }: AnswerSectionProps) {
   const [data, error, pending] = useStreamableValue(result)
   const [content, setContent] = useState<string>('')
 
@@ -23,15 +24,17 @@ export function AnswerSection({
     setContent(data)
   }, [data])
 
+
   return (
-    <div>
-      {content.length > 0 ? (
-        <Section title={hasHeader ? 'Answer' : undefined}>
-          <BotMessage content={content} />
-        </Section>
-      ) : (
-        <DefaultSkeleton />
-      )}
-    </div>
+      <div>
+        {content.length > 0 ? (
+            <Section title={hasHeader ? 'RunFast Answer' : undefined}>
+              <BotMessage content={content} />
+            </Section>
+        ) : (
+            <DefaultSkeleton />
+        )}
+      </div>
   )
 }
+
