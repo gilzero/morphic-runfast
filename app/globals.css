@@ -1,3 +1,4 @@
+/* filepath: app/globals.css */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -30,7 +31,8 @@
 
     /* Accent - Electric Blue */
     --accent: 217 91% 60%;
-    --accent-foreground: 210 40% 98%;
+    --accent-foreground: 222 47% 11%; /* Adjusted for better visibility in light mode */
+
 
     /* Speed Indicators */
     --speed-fast: 224 64% 78%;
@@ -45,6 +47,10 @@
     --border: 214 32% 91%;
     --input: 214 32% 91%;
     --ring: 222 47% 11%;
+
+    /* Link Colors - Light theme */
+    --link: 222 47% 11%;
+    --link-hover: 217 91% 60%;
 
     /* Special Radius for speed theme */
     --radius: 0.75rem;
@@ -80,6 +86,7 @@
     --accent: 217 91% 60%;
     --accent-foreground: 210 40% 98%;
 
+
     /* Speed Indicators (dark) */
     --speed-fast: 224 64% 33%;
     --speed-medium: 142 76% 36%;
@@ -93,6 +100,10 @@
     --border: 217 19% 27%;
     --input: 217 19% 27%;
     --ring: 224 76% 48%;
+
+    /* Link Colors - Dark theme */
+    --link: 210 40% 98%;
+    --link-hover: 217 91% 70%;
   }
 }
 
@@ -104,7 +115,13 @@
   body {
     @apply bg-background text-foreground antialiased;
   }
+
+  /* Base link styling */
+  a {
+    @apply text-[hsl(var(--link))] hover:text-[hsl(var(--link-hover))] transition-colors duration-200;
+  }
 }
+
 
 /* Speed-focused utilities */
 @layer components {
@@ -123,8 +140,19 @@
   .speed-glass {
     @apply backdrop-blur-sm bg-background/80;
   }
-}
+  /* Prose link styling */
+  .prose-sm a,
+  .prose-neutral a {
+    @apply text-[hsl(var(--link))] hover:text-[hsl(var(--link-hover))] transition-colors duration-200;
+    @apply no-underline hover:underline;
+  }
 
+  /* Style for links with backgrounds */
+  .prose a[class*="bg-"],
+  a[class*="bg-"] {
+    @apply text-[hsl(var(--link))] hover:text-[hsl(var(--link-hover))];
+  }
+}
 /* Performance indicators */
 @layer utilities {
   .speed-badge-fast {
