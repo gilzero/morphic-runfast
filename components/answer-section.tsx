@@ -28,7 +28,7 @@ export function AnswerSection({
   return (
       <div>
         {content.length > 0 ? (
-            <Section title={hasHeader ? 'RunFast Answer' : undefined}>
+            <Section title={hasHeader ? '⚡️ AI Answer' : undefined}>
               <BotMessage content={content} />
             </Section>
         ) : (
@@ -37,4 +37,3 @@ export function AnswerSection({
       </div>
   )
 }
-

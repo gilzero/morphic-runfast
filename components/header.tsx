@@ -22,7 +22,7 @@ const Header: React.FC = () => {
                             <div className="h-3 w-px bg-border" />
                             <div className="flex items-center px-2 py-1 rounded-full text-xs speed-badge-fast">
                                 <SpeedIndicator className="w-3 h-3 mr-1" speed="fast" />
-                                <span className="font-mono">42ms</span>
+                                <span className="font-mono">by Dreamer</span>
                             </div>
                         </div>
                     </div>

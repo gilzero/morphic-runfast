@@ -2,15 +2,8 @@
 'use client'
 
 import { cn } from '@/lib/utils'
-import {
-  BookCheck,
-  Film,
-  Image,
-  MessageCircleMore,
-  Newspaper,
-  Repeat2,
-  Search
-} from 'lucide-react'
+import { Film, Image, MessageCircleMore, Newspaper, Repeat2, Search, Star } from 'lucide-react'
+
 import React from 'react'
 import { Separator } from './ui/separator'
 
@@ -47,8 +40,7 @@ export const Section: React.FC<SectionProps> = ({
       icon = <Newspaper size={iconSize} className={iconClassName} />
       break
     case 'Answer':
-      title = "⚡️ Answer"
-      icon = <BookCheck size={iconSize} className={iconClassName} />
+      icon = <Star size={iconSize} className={iconClassName} />
       break
     case 'Related':
       title = "💡 You may wonder:"
