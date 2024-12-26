@@ -30,53 +30,78 @@ function groupModelsByProvider(models: Model[]) {
 }
 
 export function ModelSelector({
-  selectedModelId,
-  onModelChange
-}: ModelSelectorProps) {
+                                selectedModelId,
+                                onModelChange
+                              }: ModelSelectorProps) {
   const handleModelChange = (id: string) => {
     onModelChange(id)
   }
 
   const groupedModels = groupModelsByProvider(models)
+  const selectedModel = models.find(model => createModelId(model) === selectedModelId)
 
   return (
-    <div className="absolute -top-8 left-2">
-      <Select
-        name="model"
-        value={selectedModelId}
-        onValueChange={handleModelChange}
-      >
-        <SelectTrigger className="mr-2 h-7 text-xs border-none shadow-none focus:ring-0">
-          <SelectValue placeholder="Select model" />
-        </SelectTrigger>
-        <SelectContent className="max-h-[300px] overflow-y-auto">
-          {Object.entries(groupedModels).map(([provider, models]) => (
-            <SelectGroup key={provider}>
-              <SelectLabel className="text-xs sticky top-0 bg-background z-10">
-                {provider}
-              </SelectLabel>
-              {models.map(model => (
-                <SelectItem
-                  key={createModelId(model)}
-                  value={createModelId(model)}
-                  className="py-2"
-                >
-                  <div className="flex items-center space-x-1">
+      <div className="absolute -top-8 left-2">
+        <Select
+            name="model"
+            value={selectedModelId}
+            onValueChange={handleModelChange}
+        >
+          <SelectTrigger
+              className="flex items-center gap-1.5 h-7 pl-2 pr-3 text-xs
+                     bg-muted/40 hover:bg-muted/60 rounded-full
+                     border-0 shadow-none focus:ring-0
+                     transition-colors"
+          >
+            <SelectValue>
+              {selectedModel && (
+                  <div className="flex items-center gap-1.5">
                     <Image
-                      src={`/providers/logos/${model.providerId}.svg`}
-                      alt={model.provider}
-                      width={18}
-                      height={18}
-                      className="bg-white rounded-full border"
+                        src={`/providers/logos/${selectedModel.providerId}.svg`}
+                        alt={selectedModel.provider}
+                        width={14}
+                        height={14}
+                        className="rounded-full bg-background/80 p-0.5"
                     />
-                    <span className="text-xs font-medium">{model.name}</span>
+                    <span>{selectedModel.name}</span>
                   </div>
-                </SelectItem>
-              ))}
-            </SelectGroup>
-          ))}
-        </SelectContent>
-      </Select>
-    </div>
+              )}
+            </SelectValue>
+          </SelectTrigger>
+
+          <SelectContent
+              className="max-h-[300px] overflow-y-auto border border-border/50 bg-background/95 backdrop-blur-sm"
+          >
+            {Object.entries(groupedModels).map(([provider, models]) => (
+                <SelectGroup key={provider}>
+                  <SelectLabel
+                      className="text-xs sticky top-0 bg-background/95 backdrop-blur-sm px-2 py-1.5
+                          font-medium text-muted-foreground"
+                  >
+                    {provider}
+                  </SelectLabel>
+                  {models.map(model => (
+                      <SelectItem
+                          key={createModelId(model)}
+                          value={createModelId(model)}
+                          className="py-1.5 px-2 text-sm cursor-pointer"
+                      >
+                        <div className="flex items-center gap-2">
+                          <Image
+                              src={`/providers/logos/${model.providerId}.svg`}
+                              alt={model.provider}
+                              width={16}
+                              height={16}
+                              className="bg-background rounded-full p-0.5"
+                          />
+                          <span className="text-xs font-medium">{model.name}</span>
+                        </div>
+                      </SelectItem>
+                  ))}
+                </SelectGroup>
+            ))}
+          </SelectContent>
+        </Select>
+      </div>
   )
 }

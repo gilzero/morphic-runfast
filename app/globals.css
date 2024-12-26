@@ -4,65 +4,95 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 0 0% 3.9%;
+    /* Base colors - Light theme */
+    --background: 210 40% 98%; /* Slight cool tint for clarity */
+    --foreground: 222 47% 11%;
 
-    --card: 0 0% 96.1%;
-    --card-foreground: 0 0% 45.1%;
+    /* Primary - Racing Red theme */
+    --primary: 0 90% 62%;
+    --primary-foreground: 210 40% 98%;
 
+    /* Secondary - Tech Silver */
+    --secondary: 217 19% 27%;
+    --secondary-foreground: 210 40% 98%;
+
+    /* Card - Refined surface */
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+
+    /* Popover */
     --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 3.9%;
+    --popover-foreground: 222 47% 11%;
 
-    --primary: 0 0% 9%;
-    --primary-foreground: 0 0% 98%;
+    /* Muted - Subtle interactions */
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215 16% 47%;
 
-    --secondary: 0 0% 96.1%;
-    --secondary-foreground: 0 0% 9%;
+    /* Accent - Electric Blue */
+    --accent: 217 91% 60%;
+    --accent-foreground: 210 40% 98%;
 
-    --muted: 0 0% 96.1%;
-    --muted-foreground: 0 0% 45.1%;
+    /* Speed Indicators */
+    --speed-fast: 224 64% 78%;
+    --speed-medium: 142 76% 73%;
+    --speed-slow: 53 96% 77%;
 
-    --accent: 0 0% 96.1%;
-    --accent-foreground: 0 0% 9%;
-
+    /* Destructive */
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
+    --destructive-foreground: 210 40% 98%;
 
-    --border: 0 0% 89.8%;
-    --input: 0 0% 89.8%;
-    --ring: 0 0% 89.8%;
+    /* Borders and Input */
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 222 47% 11%;
 
-    --radius: 0.5rem;
+    /* Special Radius for speed theme */
+    --radius: 0.75rem;
+    --radius-speed: 1rem;
   }
 
   .dark {
-    --background: 0 0% 3.9%;
-    --foreground: 0 0% 98%;
+    /* Base colors - Dark theme */
+    --background: 222 47% 11%;
+    --foreground: 210 40% 98%;
 
-    --card: 0 0% 14.9%;
-    --card-foreground: 0 0% 63.9%;
+    /* Primary - Racing Red (adjusted for dark) */
+    --primary: 0 90% 62%;
+    --primary-foreground: 222 47% 11%;
 
-    --popover: 0 0% 3.9%;
-    --popover-foreground: 0 0% 98%;
+    /* Secondary - Tech Silver (dark) */
+    --secondary: 217 19% 27%;
+    --secondary-foreground: 210 40% 98%;
 
-    --primary: 0 0% 98%;
-    --primary-foreground: 0 0% 9%;
+    /* Card - Dark surface */
+    --card: 222 47% 11%;
+    --card-foreground: 210 40% 98%;
 
-    --secondary: 0 0% 14.9%;
-    --secondary-foreground: 0 0% 98%;
+    /* Popover */
+    --popover: 222 47% 11%;
+    --popover-foreground: 210 40% 98%;
 
-    --muted: 0 0% 14.9%;
-    --muted-foreground: 0 0% 63.9%;
+    /* Muted - Dark subtle interactions */
+    --muted: 217 19% 14%;
+    --muted-foreground: 215 20% 65%;
 
-    --accent: 0 0% 14.9%;
-    --accent-foreground: 0 0% 98%;
+    /* Accent - Electric Blue (adjusted for dark) */
+    --accent: 217 91% 60%;
+    --accent-foreground: 210 40% 98%;
 
+    /* Speed Indicators (dark) */
+    --speed-fast: 224 64% 33%;
+    --speed-medium: 142 76% 36%;
+    --speed-slow: 53 96% 31%;
+
+    /* Destructive */
     --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
+    --destructive-foreground: 210 40% 98%;
 
-    --border: 0 0% 14.9%;
-    --input: 0 0% 14.9%;
-    --ring: 0 0% 14.9%;
+    /* Borders and Input */
+    --border: 217 19% 27%;
+    --input: 217 19% 27%;
+    --ring: 224 76% 48%;
   }
 }
 
@@ -70,7 +100,42 @@
   * {
     @apply border-border;
   }
+
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground antialiased;
+  }
+}
+
+/* Speed-focused utilities */
+@layer components {
+  .speed-transition {
+    @apply transition-all duration-200 ease-out;
+  }
+
+  .speed-hover {
+    @apply hover:scale-[1.02] active:scale-[0.98] transition-transform duration-200;
+  }
+
+  .speed-focus {
+    @apply focus:outline-none focus:ring-2 focus:ring-primary/50 focus:ring-offset-2 focus:ring-offset-background;
+  }
+
+  .speed-glass {
+    @apply backdrop-blur-sm bg-background/80;
+  }
+}
+
+/* Performance indicators */
+@layer utilities {
+  .speed-badge-fast {
+    @apply bg-speed-fast/10 text-speed-fast border border-speed-fast/20;
+  }
+
+  .speed-badge-medium {
+    @apply bg-speed-medium/10 text-speed-medium border border-speed-medium/20;
+  }
+
+  .speed-badge-slow {
+    @apply bg-speed-slow/10 text-speed-slow border border-speed-slow/20;
   }
 }
