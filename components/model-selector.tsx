@@ -47,7 +47,7 @@ export function ModelSelector({
   const selectedModel = models.find(model => createModelId(model) === currentModelId)
 
   return (
-      <div className="absolute -top-8 left-2">
+      <div className="absolute -top-10 left-1">
         <Select
             name="model"
             value={currentModelId}
