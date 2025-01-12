@@ -50,12 +50,6 @@ export const models: Model[] = [
   //   provider: 'Groq',
   //   providerId: 'groq'
   // },
-  // {
-  //   id: process.env.NEXT_PUBLIC_AZURE_DEPLOYMENT_NAME || 'undefined',
-  //   name: process.env.NEXT_PUBLIC_AZURE_DEPLOYMENT_NAME || 'Undefined',
-  //   provider: 'Azure',
-  //   providerId: 'azure'
-  // },
   {
     id: process.env.NEXT_PUBLIC_OPENAI_COMPATIBLE_MODEL || 'undefined',
     name: 'Dreamer Live Mini',

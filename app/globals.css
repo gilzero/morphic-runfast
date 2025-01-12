@@ -1,4 +1,9 @@
-/* filepath: app/globals.css */
+/**
+ * @fileoverview This file contains the global styles for the RunFast AI application.
+ * It includes base styles, component styles, and utility classes.
+ * @filepath app/globals.css
+ */
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

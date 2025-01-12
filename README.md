@@ -30,9 +30,7 @@ An AI-powered search engine with a generative UI.
 - Use as a search engine [※](#-search-engine)
 - Support for providers other than OpenAI
   - Google Generative AI Provider
-  - Azure OpenAI Provider [※](https://github.com/miurla/morphic/issues/13)
   - Anthropic Provider
-  - Ollama Provider
   - Groq Provider
 - Local Redis support
 - Configurable search depth (basic or advanced)
@@ -166,8 +164,6 @@ This will allow you to use Morphic as your default search engine in the browser.
   - Gemini 2.0 Flash (Experimental)
 - Anthropic
   - Claude 3.5 Sonnet
-- Ollama
-  - qwen2.5
 - Groq
   - llama3-groq-8b-8192-tool-use-preview
   - llama3-groq-70b-8192-tool-use-preview

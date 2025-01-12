@@ -8,7 +8,6 @@ import {
   querySuggestor,
   inquire,
   taskManager,
-  researcherWithOllama,
   researcher
 } from '@/lib/agents'
 import { createStreamableValue, createStreamableUI } from 'ai/rsc'
@@ -63,11 +62,8 @@ export async function workflow(
   // Remove the spinner
   uiStream.update(null)
 
-  const useOllama = model.startsWith('ollama')
   // Select the appropriate researcher function based on the environment variables
-  const { text, toolResults } = useOllama
-    ? await researcherWithOllama(uiStream, messages, model)
-    : await researcher(uiStream, messages, model)
+  const { text, toolResults } = await researcher(uiStream, messages, model)
 
   aiState.update({
     ...aiState.get(),

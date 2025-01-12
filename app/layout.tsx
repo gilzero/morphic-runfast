@@ -1,3 +1,10 @@
+/**
+ * @fileoverview This file defines the root layout for the RunFast AI application.
+ * It includes the main structure of the application, such as the header, footer,
+ * sidebar, and main content area. It also sets up global styles and metadata.
+ * @filepath app/layout.tsx
+ */
+
 import type { Metadata, Viewport } from 'next'
 import { Inter as FontSans, Racing_Sans_One } from 'next/font/google'
 import './globals.css'
@@ -24,8 +31,11 @@ const fontRacing = Racing_Sans_One({
 
 const title = 'RunFast AI'
 const description =
-    'Lightning-fast AI-powered answers. Built for speed, powered by intelligence.'
+    'Lightning-fast AI answer engine. Built for speed, powered by intelligence.'
 
+/**
+ * Metadata for the application, including title, description, and social media settings.
+ */
 export const metadata: Metadata = {
   metadataBase: new URL('https://runfa.st'),
   title,
@@ -49,6 +59,9 @@ export const metadata: Metadata = {
   }
 }
 
+/**
+ * Viewport settings for the application, defining responsive behavior and theme colors.
+ */
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
@@ -60,6 +73,12 @@ export const viewport: Viewport = {
   ]
 }
 
+/**
+ * RootLayout component that defines the main structure of the application.
+ * @param {Object} props - The properties object.
+ * @param {React.ReactNode} props.children - The child components to be rendered within the layout.
+ * @returns {JSX.Element} The root layout of the application.
+ */
 export default function RootLayout({
                                      children
                                    }: Readonly<{

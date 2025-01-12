@@ -1,3 +1,10 @@
+/**
+ * @fileoverview This file contains the implementation of AI state management and UI state management
+ * for the application. It includes functions for submitting user input, managing AI state, and generating
+ * UI components based on the AI state.
+ * @filepath app/actions.tsx
+ */
+
 import {
   StreamableValue,
   createAI,
@@ -24,6 +31,13 @@ import { isProviderEnabled } from '@/lib/utils/registry'
 
 const MAX_MESSAGES = 6
 
+/**
+ * Submits user input to the AI workflow and updates the AI state.
+ * @param {FormData} [formData] - The form data containing user input.
+ * @param {boolean} [skip] - Whether to skip the current input.
+ * @param {AIMessage[]} [retryMessages] - Messages to retry.
+ * @returns {Promise<{id: string, isGenerating: boolean, component: React.ReactNode, isCollapsed: boolean}>} The result of the submission.
+ */
 async function submit(
   formData?: FormData,
   skip?: boolean,
@@ -139,13 +153,19 @@ const initialAIState: AIState = {
 
 const initialUIState: UIState = []
 
-// AI is a provider you wrap your application with so you can access AI and UI state in your components.
+/**
+ * AI is a provider you wrap your application with so you can access AI and UI state in your components.
+ */
 export const AI = createAI<AIState, UIState>({
   actions: {
     submit
   },
   initialUIState,
   initialAIState,
+  /**
+   * Retrieves the UI state from the AI state.
+   * @returns {Promise<UIState | undefined>} The UI state.
+   */
   onGetUIState: async () => {
     'use server'
 
@@ -157,6 +177,12 @@ export const AI = createAI<AIState, UIState>({
       return
     }
   },
+  /**
+   * Sets the AI state and saves the chat if there is an answer message.
+   * @param {Object} param0 - The parameters.
+   * @param {AIState} param0.state - The AI state.
+   * @param {Function} param0.done - The done callback.
+   */
   onSetAIState: async ({ state, done }) => {
     'use server'
 
@@ -197,6 +223,11 @@ export const AI = createAI<AIState, UIState>({
   }
 })
 
+/**
+ * Generates the UI state from the AI state.
+ * @param {Chat} aiState - The AI state.
+ * @returns {UIState} The UI state.
+ */
 export const getUIStateFromAIState = (aiState: Chat) => {
   const chatId = aiState.chatId
   const isSharePage = aiState.isSharePage
