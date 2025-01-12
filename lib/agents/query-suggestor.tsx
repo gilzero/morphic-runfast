@@ -1,14 +1,28 @@
+/**
+ * @fileoverview This module provides functionality to suggest related queries based on user input.
+ * It utilizes a streamable UI to dynamically update the query suggestion process and generate additional queries
+ * that explore the subject matter more deeply.
+ */
+
 import { createStreamableUI, createStreamableValue } from 'ai/rsc'
 import { CoreMessage, streamObject } from 'ai'
 import { PartialRelated, relatedSchema } from '@/lib/schema/related'
 import SearchRelated from '@/components/search-related'
 import { getModel } from '../utils/registry'
+import { QUERY_SUGGESTOR_PROMPT } from '../prompts/prompts'
 
+/**
+ * Suggests related queries to further explore the subject matter based on user input.
+ * @param {ReturnType<typeof createStreamableUI>} uiStream - The UI stream to update with related query data.
+ * @param {CoreMessage[]} messages - The messages containing user input and context.
+ * @param {string} model - The model identifier used to process the query suggestion.
+ * @returns {Promise<PartialRelated>} A promise that resolves to the final set of related queries.
+ */
 export async function querySuggestor(
   uiStream: ReturnType<typeof createStreamableUI>,
   messages: CoreMessage[],
   model: string
-) {
+): Promise<PartialRelated> {
   const objectStream = createStreamableValue<PartialRelated>()
   uiStream.append(<SearchRelated relatedQueries={objectStream.value} />)
 
@@ -22,12 +36,7 @@ export async function querySuggestor(
   let finalRelatedQueries: PartialRelated = {}
   const result = await streamObject({
     model: getModel(model),
-    system: `As a professional web researcher, your task is to generate a set of three queries that explore the subject matter more deeply, building upon the initial query and the information uncovered in its search results.
-
-    For instance, if the original query was "Starship's third test flight key milestones", your output should follow this format:
-
-    Aim to create queries that progressively delve into more specific aspects, implications, or adjacent topics related to the initial query. The goal is to anticipate the user's potential information needs and guide them towards a more comprehensive understanding of the subject matter.
-    Please match the language of the response to the user's language.`,
+    system: QUERY_SUGGESTOR_PROMPT,
     messages: lastMessages,
     schema: relatedSchema
   })
