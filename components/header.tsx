@@ -11,7 +11,7 @@ const Header: React.FC = () => {
                     <div className="flex items-center space-x-3">
                         <a href="/" className="flex items-center space-x-2 group">
                             <div className="relative">
-                                <IconLogo className="w-8 h-8 text-primary-500 transition-transform group-hover:scale-105" />
+                                <IconLogo className="w-8 h-8 text-primary-500 transition-transform group-hover:scale-105 animate-spin-custom" />
                                 <div className="absolute inset-0 bg-primary-500/20 blur-xl rounded-full animate-pulse" />
                             </div>
                             <span className="font-racing text-xl tracking-tight">
@@ -22,7 +22,7 @@ const Header: React.FC = () => {
                             <div className="h-3 w-px bg-border" />
                             <div className="flex items-center px-2 py-1 rounded-full text-xs speed-badge-fast">
                                 <SpeedIndicator className="w-3 h-3 mr-1" speed="fast" />
-                                <span className="font-mono">by Dreamer</span>
+                                <span className="font-mono">by DreamerAI</span>
                             </div>
                         </div>
                     </div>

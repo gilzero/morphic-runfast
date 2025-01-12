@@ -14,7 +14,7 @@ const Footer: React.FC = () => {
               className="text-muted-foreground/50"
           >
             <Link href="https://www.dreamer.xyz" target="_blank">
-              <PiBirdFill size={18} />
+              <PiBirdFill size={18} className="animate-spin-custom" />
             </Link>
           </Button>
           <Button

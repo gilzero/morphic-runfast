@@ -168,6 +168,10 @@
   .speed-badge-slow {
     @apply bg-speed-slow/10 text-speed-slow border border-speed-slow/20;
   }
+
+  .animate-spin-custom {
+    animation: customSpin 2s linear infinite;
+  }
 }
 
 @keyframes customSpin {
