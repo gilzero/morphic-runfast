@@ -1,3 +1,9 @@
+/**
+ * @fileoverview This module provides a tool for retrieving content from the web using the Tavily API.
+ * The tool fetches and processes web content, returning structured search results.
+ * @filepath lib/agents/tools/retrieve.tsx
+ */
+
 import { tool } from 'ai'
 import { retrieveSchema } from '@/lib/schema/retrieve'
 import { ToolProps } from '.'
@@ -7,41 +13,11 @@ import RetrieveSection from '@/components/retrieve-section'
 
 const CONTENT_CHARACTER_LIMIT = 10000
 
-async function fetchJinaReaderData(
-  url: string
-): Promise<SearchResultsType | null> {
-  try {
-    const response = await fetch(`https://r.jina.ai/${url}`, {
-      method: 'GET',
-      headers: {
-        Accept: 'application/json',
-        'X-With-Generated-Alt': 'true'
-      }
-    })
-    const json = await response.json()
-    if (!json.data || json.data.length === 0) {
-      return null
-    }
-
-    const content = json.data.content.slice(0, CONTENT_CHARACTER_LIMIT)
-
-    return {
-      results: [
-        {
-          title: json.data.title,
-          content,
-          url: json.data.url
-        }
-      ],
-      query: '',
-      images: []
-    }
-  } catch (error) {
-    console.error('Jina Reader API error:', error)
-    return null
-  }
-}
-
+/**
+ * Fetches and extracts data from a given URL using the Tavily API.
+ * @param {string} url - The URL to extract content from.
+ * @returns {Promise<SearchResultsType | null>} A promise that resolves to the search results or null if an error occurs.
+ */
 async function fetchTavilyExtractData(
   url: string
 ): Promise<SearchResultsType | null> {
@@ -79,6 +55,11 @@ async function fetchTavilyExtractData(
   }
 }
 
+/**
+ * A tool for retrieving web content and displaying it in the UI.
+ * @param {ToolProps} props - The properties for the tool, including UI stream and full response.
+ * @returns {Function} A tool function that executes the content retrieval process.
+ */
 export const retrieveTool = ({ uiStream, fullResponse }: ToolProps) =>
   tool({
     description: 'Retrieve content from the web',
@@ -89,13 +70,7 @@ export const retrieveTool = ({ uiStream, fullResponse }: ToolProps) =>
 
       let results: SearchResultsType | null
 
-      // Use Jina if the API key is set, otherwise use Tavily
-      const useJina = process.env.JINA_API_KEY
-      if (useJina) {
-        results = await fetchJinaReaderData(url)
-      } else {
-        results = await fetchTavilyExtractData(url)
-      }
+      results = await fetchTavilyExtractData(url)
 
       if (!results) {
         fullResponse = `An error occurred while retrieving "${url}".`
