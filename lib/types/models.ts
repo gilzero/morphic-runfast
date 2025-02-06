@@ -8,7 +8,7 @@ export interface Model {
 export const models: Model[] = [
   {
     id: 'gemini-2.0-flash-exp',
-    name: 'Dreamer Speedy',
+    name: 'DreamerAI Speedy',
     provider: 'Dreamer AI',
     providerId: 'google'
   },
@@ -20,7 +20,7 @@ export const models: Model[] = [
   // },
   {
     id: 'claude-3-5-haiku-20241022',
-    name: 'Dreamer Lite',
+    name: 'DreamerAI Lite',
     provider: 'Dreamer AI',
     providerId: 'anthropic'
   },
@@ -32,7 +32,7 @@ export const models: Model[] = [
   // },
   {
     id: 'gpt-4o-mini',
-    name: 'Dreamer Micro',
+    name: 'DreamerAI Micro',
     provider: 'Dreamer AI',
     providerId: 'openai'
   },
@@ -51,8 +51,14 @@ export const models: Model[] = [
   //   providerId: 'groq'
   // },
   {
-    id: process.env.NEXT_PUBLIC_OPENAI_COMPATIBLE_MODEL || 'undefined',
-    name: 'Dreamer Live Mini',
+    id: 'sonar-pro',
+    name: 'DreamerAI Pro',
+    provider: 'Dreamer Live',
+    providerId: 'openai-compatible'
+  },
+  {
+    id: 'sonar-reasoning-pro',
+    name: 'DreamerAI Reasoning Pro',
     provider: 'Dreamer Live',
     providerId: 'openai-compatible'
   }

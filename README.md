@@ -167,3 +167,17 @@ This will allow you to use Morphic as your default search engine in the browser.
 - Groq
   - llama3-groq-8b-8192-tool-use-preview
   - llama3-groq-70b-8192-tool-use-preview
+
+## Roadmaps
+
+- [ ] Add more models
+- [ ] Add more providers
+- [ ] Add more features
+- [ ] Add more UI
+- [ ] Add more tests
+- [ ] Add more documentation
+
+## Checkpoints
+
+- [ ] 2025-02-06: Add more models. sonar and reasoning pro.
+
